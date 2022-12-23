@@ -9,15 +9,22 @@ import ImgWeather from "./weather-forecast.png"
 function App() {
 
   const [city, setCity]= useState("Nagpur");
-  const [temp, setTemp]= useState("0");
-  const [description, setDescription]= useState("");
+  const [temp, setTemp]= useState("23°C");
+  const [description, setDescription]= useState("Cloudy");
+  const [date,setDate] = useState("23/12/22")
 
   useEffect(()=>{
     async function loadData(){
-      const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?id= ${city}&appid=d5511abf7a9efe13e05e7389dd6c4690`)
+      const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?id= ${city}&appid=ee62ca6a48d0d532275182468f8a6f2e`)
       if(response.status === 200){
         const temp = response.data.main.temp - 273.15
         setTemp(Math.round(temp));  
+
+        const description = response.data.main.description
+        setDescription(description); 
+        
+        const date = response.data.main.date
+        setDate(date); 
       }
     }
     loadData();
@@ -25,7 +32,7 @@ function App() {
   }, [city])
 
   return (
-    <>
+    <div className='row-md-12   weather-container'>
       <div className='weather-title'>
         <div>
         <img src={ImgWeather} className="img-weather"/>
@@ -44,16 +51,16 @@ function App() {
          onChange={(e)=>setCity(e.target.value)} />
       </div>
 
-      <div className='app-design'>
+      <div className=' weather-card'>
       <h2>City: {city}</h2><br/>
       <h2>Temp: {temp}</h2><br/>
-      <h2>Temp: {temp}</h2><br/>
-      <h2>Temp: {temp}</h2>
+      <h2>Description: {description}</h2><br/>
+      <h2>Date: {date}</h2>
       </div>
 
       
 
-    </>
+    </div>
   );
 }
 

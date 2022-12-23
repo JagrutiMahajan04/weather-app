@@ -1,3 +1,8 @@
+.weather-container{
+  background-image: url(./bg.gif);
+  padding: 20px;
+  margin-top: 10px;
+}
 .app-title{
   margin-left: auto;
   margin-right: auto;
@@ -22,7 +27,7 @@
   box-shadow: 1px 1px 1px 1px  blue;
 }
 .search-container{
-  width: 40%;
+  width: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,6 +35,7 @@
   margin-right: auto;
   border-radius: 10px;
   border: 1px solid blue;
+  box-shadow: 1px 1px 1px 1px  blue;
 }
 .img-location{
   height: 50px;
@@ -47,11 +53,12 @@
   width: 80%;
   border: none;
   font-size: 25px;
+  border-radius: 6px;
 }
 .input-city:focus{
   outline: none;
 }
-.app-design{
+.weather-card{
   width: 15%;
   height: 100%;
   margin-left: auto;
@@ -65,5 +72,4 @@
   background-color: #03588a;
   background-image: linear-gradient(157deg, #03588a 0%, #5eefe0 100%);
   box-shadow: 1px 1px 1px 2px  blue;
-
 }
