@@ -10,21 +10,21 @@ function App() {
 
   const [city, setCity]= useState("Nagpur");
   const [temp, setTemp]= useState("23°C");
-  const [description, setDescription]= useState("Cloudy");
-  const [date,setDate] = useState("23/12/22")
+  const [country, setCountry]= useState("Cloudy");
+  const [humidity,setHumidity] = useState("")
 
   useEffect(()=>{
     async function loadData(){
-      const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?id= ${city}&appid=ee62ca6a48d0d532275182468f8a6f2e`)
+      const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q= ${city}&appid=ee62ca6a48d0d532275182468f8a6f2e`)
       if(response.status === 200){
         const temp = response.data.main.temp - 273.15
         setTemp(Math.round(temp));  
 
-        const description = response.data.main.description
-        setDescription(description); 
+        const country = response.data.main.country
+        setCountry(country); 
         
-        const date = response.data.main.date
-        setDate(date); 
+        const humidity = response.data.main.humidity
+        setHumidity(humidity); 
       }
     }
     loadData();
@@ -32,18 +32,17 @@ function App() {
   }, [city])
 
   return (
-    <div className='row-md-12   weather-container'>
-      <div className='weather-title'>
+    <div className=' row weather-container'>
+      <div className=' col-md-3 weather-title'>
         <div>
         <img src={ImgWeather} className="img-weather"/>
         </div>
         <div>
         <h1 className='app-title'> Weather App</h1>
-        </div>
-        
+        </div>    
       </div>
      
-      <div className='search-container'> 
+      <div className=' col-md-3 search-container'> 
         <img src={ImgGoogleMap} className="img-location"/>
         <input type="text" placeholder='Enter Your City'
          className='input-city'
@@ -51,11 +50,10 @@ function App() {
          onChange={(e)=>setCity(e.target.value)} />
       </div>
 
-      <div className=' weather-card'>
+      <div className=' col-md-3 weather-card'>
       <h2>City: {city}</h2><br/>
       <h2>Temp: {temp}</h2><br/>
-      <h2>Description: {description}</h2><br/>
-      <h2>Date: {date}</h2>
+      <h2>Humidity: {humidity}</h2><br/>
       </div>
 
       
